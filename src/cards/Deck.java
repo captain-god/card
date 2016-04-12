@@ -127,9 +127,8 @@ public class Deck {
 
     /**
      * Alternative way to simulate a real shuffle of the deck of cards -
-     * Random shuffle, then take the deck and cut it half, third, quarter, third;
-     * then, take the deck, split it, and apply that algorithm to
-     * the deck segments. Rejoin the deck at the end.
+     * Take a random seed and assess what to do per character in the string
+     * @param seed the seed used to determine what happens next
      */
     public void shuffleDeck(String seed) {
         char[] seedArr = seed.toCharArray();
