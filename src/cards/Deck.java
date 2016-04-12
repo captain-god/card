@@ -1,5 +1,7 @@
 package cards;
 
+import dstring.DChar;
+
 public class Deck {
     public enum Cut {
         HALF, THIRD, QUARTER
@@ -129,17 +131,22 @@ public class Deck {
      * then, take the deck, split it, and apply that algorithm to
      * the deck segments. Rejoin the deck at the end.
      */
-    public void shuffleDeck() {
-        shuffleDeckRand();
-        cutDeck(Cut.THIRD);
-        cutDeck(Cut.QUARTER);
-        cutDeck(Cut.HALF);
-        cutDeck(Cut.THIRD);
-        Deck[] split = splitDeck(2);
-        split[0].reverseDeck();
-        split[1].dovetailShuffle();
-        mergeDecks(split[0], split[1]);
-        dovetailShuffle();
+    public void shuffleDeck(String seed) {
+        char[] seedArr = seed.toCharArray();
+        for ( char c : seedArr){
+            if (DChar.isVowel(c)){
+                dovetailShuffle();
+            }
+            if (DChar.isConsonant(c)){
+                cutDeck(Cut.QUARTER);
+            }
+            if (DChar.isSpaceChar(c)){
+                cutDeck(Cut.HALF);
+            }
+            if (DChar.isSymbol(c)){
+                reverseDeck();
+            }
+        }
     }
 
     /**
@@ -228,7 +235,7 @@ public class Deck {
                 System.arraycopy(deck, 0, deckChunk, 0, deckChunk.length);
             } else {
                 deckChunk = new Card[deck.length /divisor];
-                System.arraycopy(deck, deck.length / divisor * j + 1, deckChunk, 0, deckChunk.length);
+                System.arraycopy(deck, deck.length / divisor * j , deckChunk, 0, deckChunk.length);
             }
             splitDecks[j] = new Deck(deckChunk);
         }
