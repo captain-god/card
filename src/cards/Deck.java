@@ -90,7 +90,7 @@ public class Deck {
         if (toRemove != null){
             int i = 0;
             for (Card c : deck){
-                if (c != toRemove){
+                if (c.toString().compareTo(toRemove.toString()) != -1){
                     newDeck[i] = c;
                     i++;
                 }
