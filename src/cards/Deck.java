@@ -101,6 +101,20 @@ public class Deck {
     }
 
     /**
+     * check the deck to see if a card exists. if it does, return its index.
+     * @param c the card you're looking for.
+     * @return the index of the card if it exists and -1 if it does not.
+     */
+    public int indexOf(Card c){
+        for (int i = 0; i < deck.length; i++){
+            if (deck[i] == c){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
      * I personally don't see myself using this, but here it is just in case:
      * Add a card to the last position of the deck (the bottom of the pile)
      * @param toAdd the card to add to the deck.

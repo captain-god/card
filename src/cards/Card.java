@@ -102,4 +102,9 @@ public class Card {
     public void setSuit(Suit suit) {
         this.suit = suit;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return (this.toString().compareTo(obj.toString()) != -1);
+    }
 }
